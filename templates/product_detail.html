@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}{{ product.name }} · Last Roast{% endblock %}
+{% block content %}
+<a href="{{ url_for('products') }}" class="mono small text-uppercase link-ink">← All coffee</a>
+
+<div class="row g-5 mt-1">
+  <div class="col-lg-6">
+    <div class="box shadow-ink-lg product-art product-art-lg" style="background: {{ product.color }}">
+      <div class="bag bag-lg"><span class="display-font display-5">{{ product.name }}</span><span class="mono small">12 OZ</span></div>
+    </div>
+  </div>
+
+  <div class="col-lg-6 d-flex flex-column gap-4">
+    <div>
+      <div class="mono small text-uppercase text-muted-ink">{{ product.roast }}</div>
+      <h1 class="display-font page-title m-0">{{ product.name }}</h1>
+      <div class="mono fs-3 fw-medium">${{ product.price }}</div>
+    </div>
+    <p class="fs-5 text-muted-ink m-0">{{ product.description }}</p>
+    <div class="d-flex flex-wrap gap-2">
+      {% for note in product.notes.split(', ') %}<span class="tag bg-white">{{ note }}</span>{% endfor %}
+    </div>
+
+    <form method="post" action="{{ url_for('cart_update', slug=slug) }}" class="d-flex flex-column gap-4">
+      <input type="hidden" name="mode" value="add">
+      <div>
+        <label for="grind" class="form-label mono small text-uppercase">Grind</label>
+        <select id="grind" name="grind" class="form-select form-box">
+          <option>Whole bean</option><option>Espresso</option><option>Pour over</option><option>French press</option>
+        </select>
+      </div>
+      <div class="d-flex gap-3 flex-wrap">
+        <label for="qty" class="visually-hidden">Quantity</label>
+        {% set avail = [stock.get(slug, 0), 0]|max %}
+        <input id="qty" name="qty" type="number" min="1" max="{{ [avail, 99]|min }}" value="1" class="form-control form-box qty-input" {{ "disabled" if not avail }}>
+        <button type="submit" class="btn btn-box btn-accent btn-lg flex-grow-1" {{ "disabled" if not avail }}>{{ "Add to cart" if avail else "Sold out" }}</button>
+      </div>
+    </form>
+    <div class="mono small text-muted-ink">Roasted every Monday · Free shipping over $40</div>
+  </div>
+</div>
+{% endblock %}

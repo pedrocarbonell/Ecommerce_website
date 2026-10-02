@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Shop · Last Roast{% endblock %}
+{% block content %}
+<div class="border-bottom border-ink pb-4 mb-4">
+  <div class="mono small text-uppercase text-muted-ink">{{ products|length }} coffees</div>
+  <h1 class="display-font page-title m-0">Shop all coffee</h1>
+</div>
+<div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4">
+  {% set show_notes = true %}
+  {% for slug, p in products %}
+  <div class="col">{% include "_product_card.html" %}</div>
+  {% endfor %}
+</div>
+{% endblock %}

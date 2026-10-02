@@ -1,0 +1,18 @@
+<div class="box shadow-accent p-4 d-flex flex-column gap-3">
+  <h2 class="display-font fs-1 m-0">Summary</h2>
+  {% if show_lines %}
+  {% for item in items %}
+  <div class="d-flex align-items-center gap-3">
+    <div class="thumb thumb-sm" style="background: {{ item.color }}"></div>
+    <span class="flex-grow-1 display-font fs-4">{{ item.name }} × {{ item.qty }}</span>
+    <span class="mono">${{ item.total }}</span>
+  </div>
+  {% endfor %}
+  <hr class="border-ink opacity-100 m-0">
+  {% endif %}
+  <div class="d-flex justify-content-between"><span>Subtotal</span><span class="mono">${{ subtotal }}</span></div>
+  <div class="d-flex justify-content-between"><span>Shipping</span><span class="mono">{{ "$%d"|format(shipping) if shipping else "Free" }}</span></div>
+  <div class="d-flex justify-content-between align-items-baseline border-top border-ink pt-3">
+    <span class="display-font fs-2">Total</span><span class="mono fs-4 fw-medium">${{ total }}</span>
+  </div>
+</div>

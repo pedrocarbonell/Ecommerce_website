@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}Thanks · Last Roast{% endblock %}
+{% block content %}
+<div class="box shadow-accent p-5 text-center d-flex flex-column gap-3 align-items-center">
+  <h1 class="display-font page-title m-0">Thanks for your order</h1>
+  <p class="fs-5 text-muted-ink m-0">Your receipt is on its way to your email.</p>
+  <a href="{{ url_for('products') }}" class="link-ink">Keep browsing →</a>
+</div>
+{% endblock %}

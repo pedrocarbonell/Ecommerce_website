@@ -1,0 +1,72 @@
+/* Neo-brutalist theme on top of Bootstrap 5 */
+:root {
+  --ink: #1a1a1a;
+  --cream: #f0ede8;
+  --accent: #e06d2d;
+  --yellow: #f9ac1c;
+  --muted: #5a5a5a;
+  --bs-body-bg: var(--cream);
+  --bs-body-color: var(--ink);
+  --bs-body-font-family: 'DM Sans', sans-serif;
+  --bs-border-radius: 0;
+  --bs-border-radius-lg: 0;
+  --bs-border-radius-sm: 0;
+}
+
+.display-font, .brand { font-family: 'Bebas Neue', sans-serif; font-weight: 400; line-height: 1; }
+.mono, .tag, .btn-box, .step-title { font-family: 'DM Mono', monospace; letter-spacing: 1px; }
+.brand { font-size: 2.25rem; color: var(--ink); }
+
+.text-ink { color: var(--ink) !important; }
+.text-cream { color: var(--cream) !important; }
+.text-muted-ink { color: var(--muted) !important; }
+.bg-ink { background: var(--ink); }
+.bg-yellow { background: var(--yellow); }
+.border-ink { border-color: var(--ink) !important; border-width: 1.5px !important; }
+.link-ink { color: var(--ink); }
+.link-ink:hover { color: #b0541f; }
+
+.page-title { font-size: clamp(3.5rem, 8vw, 5.5rem); line-height: .9; }
+.section-title { font-size: clamp(2.75rem, 6vw, 4rem); }
+.hero-title { font-size: clamp(3.5rem, 10vw, 7rem); line-height: .9; }
+.step-title { font-size: .875rem; font-weight: 500; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 1rem; }
+
+/* Boxes with hard offset shadows */
+.box { background: #fff; border: 1.5px solid var(--ink); box-shadow: 4px 4px 0 var(--ink); }
+.shadow-accent { box-shadow: 8px 8px 0 var(--accent); }
+.shadow-ink-lg { box-shadow: 8px 8px 0 var(--ink); }
+.box-hover { transition: transform .12s, box-shadow .12s; }
+.box-hover:hover { transform: translate(-3px, -3px); box-shadow: 8px 8px 0 var(--ink); }
+
+.tag { display: inline-block; padding: .35rem .75rem; border: 1.5px solid var(--ink); font-size: .8rem; text-transform: uppercase; color: var(--ink); }
+
+/* Buttons */
+.btn-box {
+  border: 1.5px solid var(--ink); border-radius: 0; box-shadow: 4px 4px 0 var(--ink);
+  text-transform: uppercase; font-weight: 500; min-height: 44px;
+  display: inline-flex; align-items: center; justify-content: center;
+  transition: transform .12s, box-shadow .12s;
+}
+.btn-box:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--ink); border-color: var(--ink); }
+.btn-accent, .btn-accent:hover, .btn-accent:focus { background: var(--accent); color: var(--ink); }
+.btn-white, .btn-white:hover { background: #fff; color: var(--ink); }
+
+/* Forms */
+.form-box { border: 1.5px solid var(--ink); min-height: 46px; }
+.form-box:focus { border-color: var(--ink); box-shadow: 3px 3px 0 var(--accent); }
+.qty-input { width: 5.5rem; }
+
+/* Hero: replace with url('../img/hero.jpg') center/cover */
+.hero { min-height: 620px; background: var(--ink); }
+
+/* Product placeholder art */
+.product-art { height: 280px; display: flex; align-items: center; justify-content: center; }
+.product-art-lg { height: 560px; }
+.bag {
+  width: 130px; height: 180px; background: var(--cream); border: 1.5px solid var(--ink);
+  box-shadow: 4px 4px 0 var(--ink); display: flex; flex-direction: column;
+  align-items: center; justify-content: center; text-align: center; padding: 0 .5rem;
+}
+.bag-lg { width: 240px; height: 340px; box-shadow: 6px 6px 0 var(--ink); }
+.thumb { width: 80px; height: 80px; flex: none; border: 1.5px solid var(--ink); }
+.thumb-sm { width: 48px; height: 48px; }

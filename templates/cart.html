@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}Cart · Last Roast{% endblock %}
+{% block content %}
+<h1 class="display-font page-title mb-4">Your cart</h1>
+
+<div class="row g-5 align-items-start">
+  <section class="col-lg-8" aria-label="Items">
+    <div class="box">
+      {% for item in items %}
+      <div class="p-3 d-flex align-items-center gap-3 flex-wrap {% if not loop.first %}border-top border-ink{% endif %}">
+        <div class="thumb" style="background: {{ item.color }}"></div>
+        <div class="flex-grow-1">
+          <a href="{{ url_for('product_detail', slug=item.slug) }}" class="display-font fs-2 text-decoration-none text-ink">{{ item.name }}</a>
+          <div class="mono small text-uppercase text-muted-ink">{{ item.roast }}</div>
+        </div>
+        <form method="post" action="{{ url_for('cart_update', slug=item.slug) }}" class="d-flex gap-2">
+          <label for="qty-{{ item.slug }}" class="visually-hidden">Quantity</label>
+          <input id="qty-{{ item.slug }}" name="qty" type="number" min="0" max="99" value="{{ item.qty }}" class="form-control form-box qty-input" onchange="this.form.submit()">
+        </form>
+        <span class="mono fw-medium text-end" style="min-width: 4rem">${{ item.total }}</span>
+        <form method="post" action="{{ url_for('cart_update', slug=item.slug) }}">
+          <input type="hidden" name="qty" value="0">
+          <button type="submit" class="btn-close" aria-label="Remove {{ item.name }}"></button>
+        </form>
+      </div>
+      {% else %}
+      <div class="p-5 text-center">
+        <p class="mono text-uppercase">Your cart is empty</p>
+        <a href="{{ url_for('products') }}" class="link-ink">Browse coffee →</a>
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+
+  {% if items %}
+  <aside class="col-lg-4">
+    {% include "_summary.html" %}
+    <form method="post" action="{{ url_for('checkout') }}">
+      <button type="submit" class="btn btn-box btn-accent btn-lg w-100 mt-4">Checkout →</button>
+    </form>
+    <p class="mono small text-center text-muted-ink mt-3 mb-0">Secure payment with Stripe</p>
+  </aside>
+  {% endif %}
+</div>
+{% endblock %}

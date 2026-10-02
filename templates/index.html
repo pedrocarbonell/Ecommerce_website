@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="hero box shadow-accent d-flex align-items-end">
+  {# Swap the background for your hero photo: static/img/hero.jpg #}
+  <div class="p-4 p-md-5 d-flex flex-column gap-3 align-items-start">
+    <span class="tag bg-yellow">Small-batch roasted</span>
+    <h1 class="display-font hero-title text-cream m-0">Coffee worth<br>waking up for</h1>
+    <a href="{{ url_for('products') }}" class="btn btn-box btn-accent btn-lg">Shop coffee →</a>
+  </div>
+</section>
+
+<section class="mt-5 pt-4">
+  <div class="d-flex justify-content-between align-items-end flex-wrap gap-2 mb-4">
+    <h2 class="display-font section-title m-0">The coffees</h2>
+    <a href="{{ url_for('products') }}" class="mono text-uppercase link-ink">View all →</a>
+  </div>
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-4">
+    {% for slug, p in products %}
+    <div class="col">{% include "_product_card.html" %}</div>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}
